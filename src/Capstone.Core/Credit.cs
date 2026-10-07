@@ -1,9 +1,7 @@
 namespace Capstone.Core;
-
-/// <summary>
-/// Who performed a track. The main artist is required;
-/// a featured artist is optional (null means "none").
-/// </summary>
+ 
+// Who performed a track. The main artist is required;
+ 
 public sealed record Credit(string Artist, string? FeaturedArtist = null)
 {
     public override string ToString() =>
