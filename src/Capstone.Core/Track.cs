@@ -48,7 +48,7 @@ public sealed class Track : IItem
     public int PlayCount { get; private set; }
     public string DisplayName => $"{Title} — {Credit}";
 
-    /// <summary>1–5 stars. null means "not rated yet", which is not the same as 0.</summary>
+    /// <summary>1–5 stars. null means "not rated yet".</summary>
     public int? Rating
     {
         get => rating;
