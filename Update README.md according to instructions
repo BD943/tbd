@@ -4,9 +4,9 @@
 
 > **Edit this section in session 1.** It's your first commit.
 >
-> **Theme:** _which of the catalogue themes you picked_
-> **In one sentence:** _what your app will do by January_
-> **Route:** _guided or project_
+> **Theme: music-library
+> **In one sentence: A personal music library. It holds albums and tracks, remembers what you've played, and answers questions about your taste. By January it is a desktop app, a web API and a database — the same tracks underneath all three.
+> **Route:** _guided_
 >
 > Don't write your name or your avatar here. The scoreboard is anonymous, and this file is how people would find out.
 
