@@ -2,7 +2,7 @@ using SharpQuest.Contracts;
 using Capstone.Core.Model;
 namespace Capstone.Core.Model;
 
-public sealed class Track : IItem
+public sealed class Track : ITrack
 {
     private int? rating;
 
