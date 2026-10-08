@@ -1,5 +1,5 @@
+using Capstone.Core.Model;
 using SharpQuest.Contracts;
-
 namespace Capstone.Core.Wiring;
 
 /// <summary>Tells the Lab 02 tests how to create this capstone's objects.</summary>
