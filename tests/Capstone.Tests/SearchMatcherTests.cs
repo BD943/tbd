@@ -11,7 +11,7 @@ public class SearchMatcherTests
     [InlineData("")]
     [InlineData(" ")]
     [InlineData("     ")]
-    [InlineData("\t \n")]
+    [InlineData("\n \t")]
     public void Empty_or_blank_query_matches_any_text(string query)
     {
         Assert.True(Matcher.Matches("Pikachu", query), "R1: an empty or whitespace-only query should match every non-null text.");

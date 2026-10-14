@@ -8,7 +8,6 @@ public sealed class Lab03Wiring : ILab03Wiring
 {
     public IItemStore CreateStore() => new ItemStore();
  
-    
     public IItem CreateSample(int seed) => new Lab02Wiring().CreateSample(seed);
  
     public IReadOnlyList<IItem> Search(IItemStore store, string query)
