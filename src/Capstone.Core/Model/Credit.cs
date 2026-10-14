@@ -5,5 +5,5 @@ namespace Capstone.Core.Model;
 public sealed record Credit(string Artist, string? FeaturedArtist = null)
 {
     public override string ToString() =>
-        FeaturedArtist is null ? Artist : $"{Artist} feat. {FeaturedArtist}";
+        FeaturedArtist is null ? Artist : $"{Artist} featuring {FeaturedArtist}";
 }
