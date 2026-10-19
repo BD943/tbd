@@ -12,4 +12,6 @@ public interface ITrack : IItem
     Album Album { get; }
     int PlayCount { get; }
     int? Rating { get; }
+
+    string Describe();
 }

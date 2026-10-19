@@ -16,7 +16,7 @@ public sealed class Lab02Wiring : ILab02Wiring
 
         var album = new Album($"Sample Album {seed}", "Sample Artist", year);
 
-        return new Track(
+        return new Song(
             id: $"trk-{seed:D3}",
             title: $"Sample Track {seed}",
             credit: new Credit("Sample Artist"),

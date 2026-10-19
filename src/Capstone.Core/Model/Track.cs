@@ -1,12 +1,14 @@
-using SharpQuest.Contracts;
-using Capstone.Core.Model;
 namespace Capstone.Core.Model;
 
-public sealed class Track : ITrack
+/// <summary>
+/// The abstract base of every kind of audio in the library. It holds what all kinds share;
+/// each kind decides for itself how it describes itself.
+/// </summary>
+public abstract class Track : ITrack
 {
     private int? rating;
-
-    public Track(
+ 
+    protected Track(
         string id,
         string title,
         Credit credit,
@@ -24,7 +26,7 @@ public sealed class Track : ITrack
         if (duration <= TimeSpan.Zero)
             throw new ArgumentOutOfRangeException(nameof(duration), "Duration must be positive.");
         ArgumentOutOfRangeException.ThrowIfNegative(playCount);
-
+ 
         Id = id;
         Title = title;
         Credit = credit;
@@ -34,10 +36,10 @@ public sealed class Track : ITrack
         Album = album;
         PlayCount = playCount;
         Rating = rating; // goes through the validating setter
-
+ 
         album.AddTrack(this);
     }
-
+ 
     public string Id { get; }
     public string Title { get; }
     public Credit Credit { get; }
@@ -46,9 +48,11 @@ public sealed class Track : ITrack
     public int Year { get; }
     public Album Album { get; }
     public int PlayCount { get; private set; }
+ 
+     
     public string DisplayName => $"{Title} — {Credit}";
-
-    /// <summary>1–5 stars. null means "not rated yet".</summary>
+ 
+    /// <summary>1–5 stars. null means "not rated yet", which is not the same as 0.</summary>
     public int? Rating
     {
         get => rating;
@@ -59,9 +63,15 @@ public sealed class Track : ITrack
             rating = value;
         }
     }
-
+ 
     public void RegisterPlay() => PlayCount++;
-
+ 
+    /// <summary>Every kind must describe itself. There is no default.</summary>
+    public abstract string Describe();
+ 
+    /// <summary>The length as minutes:seconds. Minutes keep counting past 59, so 75 minutes is "75:00".</summary>
+    protected string LengthText => $"{(int)Duration.TotalMinutes}:{Duration.Seconds:D2}";
+ 
     public override string ToString() =>
-        $"{DisplayName} ({Year}, {Genre}, {Duration:m\\:ss}, " + $"{(Rating is { } r ? $"{r}/5" : "not rated yet")})";
+        $"{DisplayName} ({Year}, {Genre}, {LengthText}, " +  $"{(Rating is { } r ? $"{r}/5" : "not rated yet")})";
 }

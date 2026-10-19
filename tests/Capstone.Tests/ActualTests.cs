@@ -6,11 +6,11 @@ public class ActualTests
     // ---------- Helpers ----------
  
      
-    private static Track MakeTrack(Album album, int n, TimeSpan duration, int? rating = null) =>
+    private static Song MakeTrack(Album album, int n, TimeSpan duration, int? rating = null) =>
         new($"track-{n}", $"Song {n}", new Credit("Artist"), Genre.Rock, duration, 1999, album, rating: rating);
  
     
-    private static Track MakeLibraryTrack(string id, Genre genre, int year, int? rating = null) =>
+    private static Song MakeLibraryTrack(string id, Genre genre, int year, int? rating = null) =>
         new(id, $"Song {id}", new Credit("Artist"), genre, new TimeSpan(0, 3, 0), year, new Album($"Album {id}", "Artist", year), rating: rating);
  
     private static IEnumerable<string> Ids(IEnumerable<ITrack> tracks) => tracks.Select(t => t.Id);
@@ -106,8 +106,8 @@ public class ActualTests
     public void Display_name_shows_featured_artist_only_when_there_is_one()
     {
         var album = new Album("Album", "Artist", 1991);
-        var solo = new Track("track-1", "Song", new Credit("Queen"), Genre.Rock, new TimeSpan(0, 3, 0), 1981, album);
-        var duet = new Track("track-2", "Song", new Credit("Queen", "David Bowie"), Genre.Rock, new TimeSpan(0, 3, 0), 1981, album);
+        var solo = new Song("track-1", "Song", new Credit("Queen"), Genre.Rock, new TimeSpan(0, 3, 0), 1981, album);
+        var duet = new Song("track-2", "Song", new Credit("Queen", "David Bowie"), Genre.Rock, new TimeSpan(0, 3, 0), 1981, album);
  
         Assert.Equal("Song — Queen", solo.DisplayName);
         Assert.Equal("Song — Queen featuring David Bowie", duet.DisplayName);
@@ -115,7 +115,7 @@ public class ActualTests
 
    // ---------- Smart playlists ----------
 
-    private static Track Make(string id, Genre genre, int year, int? rating = null) =>
+    private static Song Make(string id, Genre genre, int year, int? rating = null) =>
         new(id, $"Song {id}", new Credit("Artist"), genre, new TimeSpan(0, 3, 0), year, new Album($"Album {id}", "Artist", year), rating: rating);
     [Fact]
     public void Rock_before_2000_rated_4_plus_match()

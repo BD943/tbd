@@ -17,4 +17,6 @@ internal sealed record TrackDto(
     string? AlbumArtist,
     int? AlbumYear,
     int PlayCount,
-    int? Rating);
+    int? Rating,
+    string? Kind,
+    int? EpisodeNumber);
