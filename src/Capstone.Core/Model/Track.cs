@@ -1,8 +1,7 @@
 namespace Capstone.Core.Model;
 
 /// <summary>
-/// The abstract base of every kind of audio in the library. It holds what all kinds share;
-/// each kind decides for itself how it describes itself.
+/// The abstract base of every kind of audio in the library.
 /// </summary>
 public abstract class Track : ITrack
 {
