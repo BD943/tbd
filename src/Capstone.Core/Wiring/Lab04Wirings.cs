@@ -6,7 +6,7 @@ namespace Capstone.Core.Wiring;
 /// <summary>Tells the Lab 04 tests about the Track family: its base, its kinds, and what they can do.</summary>
 public sealed class Lab04Wiring : ILab04Wiring
 {
-    public IItemStore CreateStore() => new ItemStore();
+    public IItemStore CreateStore() => new Library();
  
     /// <summary>The abstract base class of the hierarchy.</summary>
     public Type BaseType => typeof(Track);

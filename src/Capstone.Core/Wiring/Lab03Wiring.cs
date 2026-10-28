@@ -6,7 +6,7 @@ namespace Capstone.Core.Wiring;
 /// <summary>Tells the Lab 03 tests how to search this capstone.</summary>
 public sealed class Lab03Wiring : ILab03Wiring
 {
-    public IItemStore CreateStore() => new ItemStore();
+    public IItemStore CreateStore() => new Library();
  
     public IItem CreateSample(int seed) => new Lab02Wiring().CreateSample(seed);
  

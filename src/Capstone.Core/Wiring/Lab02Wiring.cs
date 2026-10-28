@@ -5,7 +5,7 @@ namespace Capstone.Core.Wiring;
 /// <summary>Tells the Lab 02 tests how to create this capstone's objects.</summary>
 public sealed class Lab02Wiring : ILab02Wiring
 {
-    public IItemStore CreateStore() => new ItemStore();
+    public IItemStore CreateStore() => new Library();
 
     public IItemMapper CreateMapper() => new TrackMapper();
 
