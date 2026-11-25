@@ -2,6 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Capstone.Core/Capstone.Core.csproj" />
     <Project Path="src/Capstone.App/Capstone.App.csproj" />
+    <Project Path="src/Capstone.Ui/Capstone.Ui.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/Capstone.Tests/Capstone.Tests.csproj" />

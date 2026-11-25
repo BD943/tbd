@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Capstone.Core.ViewModels"
+        xmlns:c="using:SharpQuest.Contracts"
+        x:Class="Capstone.Ui.MainWindow"
+        x:DataType="vm:CatalogueViewModel"
+        Title="Music Library" Width="860" Height="520" MinWidth="680" MinHeight="420">
+
+    <!-- No DataContext here: App.axaml.cs sets it, once. -->
+    <Grid RowDefinitions="Auto,*,Auto" ColumnDefinitions="2*,12,*" Margin="12">
+
+        <!-- Search: typing sets Filter on every keystroke, and the list follows. -->
+        <TextBox Grid.Row="0" Grid.Column="0" Margin="0,0,0,8"
+                 Text="{Binding Filter, Mode=TwoWay}" PlaceholderText="Search" />
+
+        <Button Grid.Row="0" Grid.Column="2" Margin="0,0,0,8" HorizontalAlignment="Stretch"
+                Content="Delete selected" Command="{Binding RemoveCommand}" />
+
+        <!-- The list: Items is the same observable collection forever; Selected is two-way. -->
+        <ListBox Grid.Row="1" Grid.Column="0"
+                 ItemsSource="{Binding Items}"
+                 SelectedItem="{Binding Selected, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate x:DataType="c:IItem">
+                    <TextBlock Text="{Binding DisplayName}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Spacing="4">
+            <TextBlock Text="Details" FontWeight="Bold" />
+            <TextBlock Text="{Binding Details}" TextWrapping="Wrap" Margin="0,0,0,16" />
+
+            <TextBlock Text="Add a track" FontWeight="Bold" />
+            <TextBox Text="{Binding NewTitle, Mode=TwoWay}" PlaceholderText="Title" />
+            <TextBox Text="{Binding NewArtist, Mode=TwoWay}" PlaceholderText="Artist" />
+            <TextBox Text="{Binding NewMinutes, Mode=TwoWay}" PlaceholderText="Length in minutes" />
+            <ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding NewGenre, Mode=TwoWay}"
+                      HorizontalAlignment="Stretch" />
+            <Button Content="Add" Command="{Binding AddTrackCommand}" Margin="0,6,0,0" />
+        </StackPanel>
+
+        <!-- These numbers change by themselves as tracks are added, deleted and filtered. -->
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" Spacing="16" Margin="0,8,0,0">
+            <TextBlock Text="{Binding Count, StringFormat='{}{0} showing'}" />
+            <TextBlock Text="{Binding TotalLengthText, StringFormat='Total length {0}'}" />
+        </StackPanel>
+    </Grid>
+</Window>

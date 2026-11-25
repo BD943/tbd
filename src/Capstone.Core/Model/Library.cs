@@ -13,6 +13,7 @@ public sealed class Library : IItemStore, IEnumerable<IItem>
     public RecentlyPlayed<Track> Recent { get; } = new();
 
     public event Action<IItem>? ItemAdded;
+    public event Action<IItem>? ItemRemoved;
 
     //The item at this position, in the order added. Out of range throws ArgumentOutOfRangeException.
     public IItem this[int index] => items[index];
@@ -46,6 +47,7 @@ public sealed class Library : IItemStore, IEnumerable<IItem>
         items.Remove(removed);
         if (removed is Track track)
             Recent.Remove(track);   // a removed track must not linger in "recently played"
+        ItemRemoved?.Invoke(removed);
         return true;
     }
 
